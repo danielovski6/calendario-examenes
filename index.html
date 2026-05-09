@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de Exámenes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="topbar">
+      <div>
+        <h1>Calendario de Exámenes</h1>
+      </div>
+      <button class="primary-button" id="openExamButton" type="button">Añadir examen</button>
+    </section>
+
+    <details class="month-tools">
+      <summary>Meses del calendario</summary>
+      <form class="month-form" id="monthForm">
+        <label for="monthInput">Mes</label>
+        <select id="monthInput" required>
+          <option value="0">Enero</option>
+          <option value="1">Febrero</option>
+          <option value="2">Marzo</option>
+          <option value="3">Abril</option>
+          <option value="4">Mayo</option>
+          <option value="5">Junio</option>
+          <option value="6">Julio</option>
+          <option value="7">Agosto</option>
+          <option value="8">Septiembre</option>
+          <option value="9">Octubre</option>
+          <option value="10">Noviembre</option>
+          <option value="11">Diciembre</option>
+        </select>
+
+        <label for="yearInput">Año</label>
+        <input id="yearInput" type="number" min="2020" max="2100" required>
+
+        <button class="secondary-button" type="submit">Añadir mes</button>
+      </form>
+
+      <div class="selected-months" id="selectedMonths" aria-live="polite"></div>
+    </details>
+
+    <details class="summary-tools">
+      <summary>Resumen</summary>
+      <section class="summary-grid" aria-label="Resumen de próximos exámenes">
+      <div class="summary-panel">
+        <span>Próximo examen</span>
+        <strong id="nextExamText">Sin exámenes</strong>
+      </div>
+      <div class="summary-panel">
+        <span>Total visibles</span>
+        <strong id="totalVisibleText">0</strong>
+      </div>
+      <div class="summary-panel">
+        <span>8+ créditos</span>
+        <strong id="highPriorityText">0</strong>
+      </div>
+      </section>
+    </details>
+
+    <section class="calendar-list" id="calendarList" aria-live="polite"></section>
+  </main>
+
+  <dialog class="exam-dialog" id="examDialog">
+    <form class="exam-form" id="examForm" method="dialog">
+      <div class="dialog-header">
+        <h2 id="dialogTitle">Añadir examen</h2>
+        <button class="icon-button" id="closeDialogButton" type="button" aria-label="Cerrar">×</button>
+      </div>
+
+      <input id="examId" type="hidden">
+
+      <label for="examName">Nombre del examen</label>
+      <input id="examName" type="text" placeholder="Ej. Anatomía" required>
+
+      <label for="examDate">Fecha</label>
+      <input id="examDate" type="date" required>
+
+      <label for="examTime">Hora</label>
+      <input id="examTime" type="time">
+
+      <label for="examCredits">Créditos de la asignatura</label>
+      <input id="examCredits" type="number" min="1" max="30" step="1" placeholder="Ej. 6" required>
+
+      <label for="examNotes">Notas</label>
+      <textarea id="examNotes" rows="3" placeholder="Temas, aula, recordatorios..."></textarea>
+
+      <div class="dialog-actions">
+        <button class="danger-button" id="deleteExamButton" type="button">Eliminar</button>
+        <button class="secondary-button" id="cancelDialogButton" type="button">Cancelar</button>
+        <button class="primary-button" type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
