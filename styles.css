@@ -173,11 +173,20 @@ input,
 select,
 textarea {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
   color: var(--text);
   padding: 10px 12px;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 textarea {
@@ -412,7 +421,8 @@ textarea {
 }
 
 .exam-dialog {
-  width: min(520px, calc(100% - 28px));
+  width: min(520px, calc(100vw - 28px));
+  max-width: calc(100vw - 28px);
   border: 0;
   border-radius: 8px;
   padding: 0;
@@ -427,6 +437,8 @@ textarea {
   display: grid;
   gap: 9px;
   padding: 18px;
+  width: 100%;
+  min-width: 0;
 }
 
 .dialog-header,
@@ -434,6 +446,19 @@ textarea {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 10px;
+  min-width: 0;
+}
+
+.form-field {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
 }
 
 .dialog-header {
@@ -620,7 +645,16 @@ textarea {
   }
 
   .exam-dialog {
-    width: min(100% - 14px, 520px);
+    width: min(100vw - 14px, 520px);
+    max-width: calc(100vw - 14px);
+  }
+
+  .exam-form {
+    padding: 14px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 
   .dialog-actions {
